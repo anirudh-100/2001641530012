@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def fetch_numbers_from_url(url):
     try:
-        response = requests.get(url, timeout=0.5)  # Set a timeout of 500 milliseconds
+        response = requests.get(url, timeout=0.5)  
         response.raise_for_status()
         data = response.json()
         return data.get("numbers", [])
@@ -30,7 +30,7 @@ def fetch_and_merge_numbers():
                 numbers = future.result()
                 merged_numbers.update(numbers)
             except TimeoutError:
-                pass  # Ignore URLs that exceeded the timeout
+                pass  
 
     sorted_numbers = sorted(merged_numbers)
     return jsonify({'numbers': sorted_numbers})
